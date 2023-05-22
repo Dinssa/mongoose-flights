@@ -22,7 +22,6 @@ async function newFlight(req, res) {
     // TODO: set default time to 24hrs format
     const { departs : dt } = new Flight();
     const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
-    console.log(defaultDate);
     res.render('flights/new', { 
         title: 'Add Flight', 
         navLinks: [
@@ -40,6 +39,23 @@ async function create(req, res) {
     } catch (err) {
         const { departs : dt } = new Flight();
         const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
+
+        switch (err.name) {
+            case 'ValidationError':
+                if (!!err.errors.departs) {
+                    err.message = 'Departure date must be a valid date';
+                }
+                if (!!err.errors.airport) {
+                    err.message = 'Destination Airport must be selected from our approved list';
+                }
+                if (!!err.errors.airline) {
+                    err.message = 'Airline must be selected from our approved list';
+                }
+                if (!!err.errors.flightNo) {
+                    err.message = 'Flight number must be entered & a number between 10 and 9999';
+                }
+        }
+        
         res.render('flights/new', {
             title: 'Add Flight',
             navLinks: [
