@@ -18,7 +18,10 @@ async function index(req, res) {
 }
 
 async function newFlight(req, res) {
-    const defaultDate = moment(new Flight().departs).format('yyyy-MM-DDTHH:mm');
+    // TODO: set default time to 24hrs format
+    const { departs : dt } = new Flight();
+    const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
+    console.log(defaultDate);
     res.render('flights/new', { 
         title: 'Add Flight', 
         navLinks: [
@@ -34,7 +37,8 @@ async function create(req, res) {
         await Flight.create(req.body);
         res.redirect('/flights');
     } catch (err) {
-        const defaultDate = moment(new Flight().departs).format('yyyy-MM-DDTHH:mm');
+        const { departs : dt } = new Flight();
+        const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
         res.render('flights/new', {
             title: 'Add Flight',
             navLinks: [
