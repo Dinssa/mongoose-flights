@@ -1,25 +1,30 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
-<h1><%= title %></h1>
 
 <form action="/flights" method="POST">
-    <label>
-        Flight No.
-        <input type="number" name="flightNo" min="10" max="9999" />
-    </label>
-    <label>
-        Airline
-        <select name="airline">
+    <div class="form-group row">
+        <label class="col-form-label col-sm-3 text-white">
+            Flight No.
+        </label>
+        <input type="number" name="flightNo" min="10" max="9999" class="form-control col-sm-5" />
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-sm-3 text-white">
+            Airline
+        </label>
+        <select name="airline" class="form-control col-sm-5">
             <option value="British Airways">British Airways</option>
             <option value="Virgin Atlantic">Virgin Atlantic</option>
             <option value="Emirates">Emirates</option>
             <option value="EasyJet">EasyJet</option>
             <option value="Ryanair">Ryanair</option>
-          </select>
-    </label>
-    <label>
-        Destination Airport
-        <select name="airport">
+        </select>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-sm-3 text-white">
+            Destination Airport
+        </label>
+        <select name="airport" class="form-control col-sm-5">
             <option value="LHR">LHR</option>
             <option value="LGW">LGW</option>
             <option value="CDG">CDG</option>
@@ -29,16 +34,18 @@
             <option value="DUB">DUB</option>
             <option value="JFK">JFK</option>
         </select>
-    </label>
-    <label>
-        Departure Date
-        <input type="datetime-local" name="departs" value="<%= defaultDate %>"/>
-    </label>
-
-    <button type="submit">Add Flight</button>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-sm-3 text-white">
+            Departure Date
+        </label>
+        <input type="datetime-local" name="departs" value="<%= defaultDate %>" class="form-control col-sm-5"/>
+    </div>
+    
+    <button type="submit" class="submit btn btn-primary btn-sm">Add Flight</button>
 
 </form>
 
-<p><%= errorMessage %></p>
+<p class="error alert alert-warning"><%= errorMessage %></p>
 
 <%- include('../partials/footer') %>

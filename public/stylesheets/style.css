@@ -13,6 +13,19 @@ form{
   flex-direction: column;
 }
 
-form > label {
-  margin-bottom: 15px;
+h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.error{
+  margin-top: 20px;
+}
+
+.error:empty{
+  display: none;
+}
+
+.submit{
+  align-self: flex-end;
 }

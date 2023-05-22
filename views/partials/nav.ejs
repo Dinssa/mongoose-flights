@@ -1,7 +1,8 @@
-<nav>
-    <a href="/">Home</a>
+<nav class="navbar navbar-dark bg-primary justify-content-start">
+    <a href="/" class="nav-item nav-link text-white">Home</a>
     <% if (locals.navLinks) navLinks.forEach(function(nav) { %>
-        |
-        <a href="/<%= nav.link %>"><%= nav.title %></a>
+        <a href="/<%= nav.link %>" class="nav-item nav-link text-white"><%= nav.title %></a>
     <% }) %>
-  </nav>
+</nav>
+
+<h1 class="text-white"><%= title %></h1>
