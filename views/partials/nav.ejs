@@ -1,0 +1,7 @@
+<nav>
+    <a href="/">Home</a>
+    <% if (locals.navLinks) navLinks.forEach(function(nav) { %>
+        |
+        <a href="/<%= nav.link %>"><%= nav.title %></a>
+    <% }) %>
+  </nav>
