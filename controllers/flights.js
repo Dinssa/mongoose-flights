@@ -10,7 +10,7 @@ module.exports = {
 async function index(req, res) {
     res.render('flights/index', { 
         title: 'All Flights', 
-        flights: await Flight.find({}),
+        flights: await Flight.find({}).sort({ departs: 1 }),
         navLinks: [
             { link: 'flights/new', title: 'Add Flight' },
         ]
