@@ -13,7 +13,8 @@ async function index(req, res) {
         flights: await Flight.find({}).sort({ departs: 1 }),
         navLinks: [
             { link: 'flights/new', title: 'Add Flight' },
-        ]
+        ],
+        currentDate: new Date()
     });
 }
 
