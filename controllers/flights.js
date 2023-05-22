@@ -1,4 +1,5 @@
 const Flight = require('../models/flight');
+const moment = require('moment');
 
 module.exports = {
     index,
@@ -17,12 +18,14 @@ async function index(req, res) {
 }
 
 async function newFlight(req, res) {
+    const defaultDate = moment(new Flight().departs).format('yyyy-MM-DDTHH:mm');
     res.render('flights/new', { 
         title: 'Add Flight', 
         navLinks: [
             { link: 'flights', title: 'All Flights'},
         ],
-        errorMessage: ''
+        errorMessage: '',
+        defaultDate
     });
 }
 
@@ -31,12 +34,14 @@ async function create(req, res) {
         await Flight.create(req.body);
         res.redirect('/flights');
     } catch (err) {
+        const defaultDate = moment(new Flight().departs).format('yyyy-MM-DDTHH:mm');
         res.render('flights/new', {
             title: 'Add Flight',
             navLinks: [
                 { link: 'flights', title: 'All Flights'},
             ],
-            errorMessage: err.message
+            errorMessage: err.message,
+            defaultDate
         });
     }
 }
