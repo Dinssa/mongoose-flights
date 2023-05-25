@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<table class="table table-dark table-striped table-hover table-sm">
+<table class="table table-dark table-hover table-sm">
     <thead class="thead-light">
         <tr>
             <th>Flight No.</th>
@@ -22,7 +22,7 @@
                 <td><%= flight.airline %></td>
                 <td><%= flight.airport %></td>
                 <td><%= moment(flight.departs).format("DD MMM YYYY HH:mm") %></td>
-                <td> <a href="/flights/<%= flight._id %>" class="details-link">DETAILS</a></td>
+                <td> <a href="/flights/<%= flight._id %>" class="btn btn-outline-light btn-sm">DETAILS</a></td>
             </tr>
         <% }) %>
     </tbody>
