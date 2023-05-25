@@ -4,7 +4,8 @@ const moment = require('moment');
 module.exports = {
     index,
     new: newFlight,
-    create
+    create,
+    show
 }
 
 async function index(req, res) {
@@ -12,6 +13,19 @@ async function index(req, res) {
         title: 'All Flights', 
         flights: await Flight.find({}).sort({ departs: 1 }),
         navLinks: [
+            { link: 'flights/new', title: 'Add Flight' },
+        ],
+        currentDate: new Date()
+    });
+}
+
+async function show(req, res) {
+    const flight = await Flight.findById(req.params.id);
+    res.render('flights/show', { 
+        title: 'Flight Details', 
+        flight,
+        navLinks: [
+            { link: 'flights', title: 'All Flights'},
             { link: 'flights/new', title: 'Add Flight' },
         ],
         currentDate: new Date()

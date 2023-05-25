@@ -8,6 +8,7 @@
             <th>Airline</th>
             <th>Airport</th>
             <th>Departure</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
                 <td><%= flight.airline %></td>
                 <td><%= flight.airport %></td>
                 <td><%= moment(flight.departs).format("DD MMM YYYY HH:mm") %></td>
+                <td> <a href="/flights/<%= flight._id %>" class="details-link">DETAILS</a></td>
             </tr>
         <% }) %>
     </tbody>
