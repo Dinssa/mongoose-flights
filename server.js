@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const moment = require('moment'); // require moment to format dates
+const methodOveride = require('method-override');
 
 require('dotenv').config();
 require('./config/database'); // connect to the database
@@ -26,6 +27,7 @@ app.use(function(req, res, next) { // add moment to res.locals
   res.locals.moment = moment;
   next();
 });
+app.use(methodOveride('_method'));
 
 app.use('/', indexRouter);
 app.use('/flights', flightsRouter)
