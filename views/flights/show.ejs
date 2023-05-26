@@ -27,6 +27,38 @@
             </tr>
         </tbody>
     </table>
+    <div class="text-white text-right">
+        <span>LAST UPDATED: <%= moment(flight.updatedAt).format("DD MMM YYYY HH:mm") %></span>
+    </div>
+</div>
+
+<div class="update">
+    <form id="update" action="/flights/<%= flight._id %>/destination" method="POST">
+        <h3 class="text-white">Add Details</h3>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3 text-white">
+                Destination Airport
+            </label>
+            <select name="airport" class="form-control col-sm-5" required>
+                <option value="">Select Airport</option>
+                <option value="LHR">LHR</option>
+                <option value="LGW">LGW</option>
+                <option value="CDG">CDG</option>
+                <option value="AMS">AMS</option>
+                <option value="FRA">FRA</option>
+                <option value="FCO">FCO</option>
+                <option value="DUB">DUB</option>
+                <option value="JFK">JFK</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3 text-white">
+                Arrival Date
+            </label>
+            <input type="datetime-local" name="arrival" value="<%= defaultDate %>" class="form-control col-sm-5"/>
+        </div>
+        <button class="btn btn-outline-danger btn-sm">UPDATE</button>
+    </form>
 </div>
 
 

@@ -21,6 +21,8 @@ async function index(req, res) {
 
 async function show(req, res) {
     const flight = await Flight.findById(req.params.id);
+    const { departs : dt } = new Flight(); // TODO: Change this to default arrival date in destination schema
+    const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
     res.render('flights/show', { 
         title: 'Flight Details', 
         flight,
@@ -28,12 +30,12 @@ async function show(req, res) {
             { link: 'flights', title: 'All Flights'},
             { link: 'flights/new', title: 'Add Flight' },
         ],
-        currentDate: new Date()
+        currentDate: new Date(),
+        defaultDate
     });
 }
 
 async function newFlight(req, res) {
-    // TODO: set default time to 24hrs format
     const { departs : dt } = new Flight();
     const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
     res.render('flights/new', { 
