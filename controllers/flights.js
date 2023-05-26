@@ -33,6 +33,10 @@ async function show(req, res) {
         return !airportsAlreadyUsed.includes(airport);
     });
 
+    flight.destinations.sort((a, b) => {
+        return a.arrival - b.arrival;
+    });;
+
     res.render('flights/show', { 
         title: 'Flight Details', 
         flight,
