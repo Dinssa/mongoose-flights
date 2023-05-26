@@ -12,6 +12,9 @@ async function create(req, res) {
         const flight = await Flight.findById(id);
 
         flight.destinations.push(req.body);
+        flight.destinations.sort((a, b) => {
+            return a.arrival - b.arrival;
+        });
         console.log(flight);
 
         await flight.save();
