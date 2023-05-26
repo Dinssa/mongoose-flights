@@ -23,6 +23,16 @@ async function show(req, res) {
     const flight = await Flight.findById(req.params.id);
     const { departs : dt } = new Flight(); // TODO: Change this to default arrival date in destination schema
     const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
+
+    let airportsAlreadyUsed = []
+    let airportsToSelect = flight.constructor.schema.path('airport').enumValues; // all airports in destination schema
+    airportsAlreadyUsed.push(flight.airport) // add current airport
+    airportsAlreadyUsed.push(...flight.destinations.map((destination) => {return destination.airport})) // add all airports in destinations
+    // remove all airports already used
+    airportsToSelect = airportsToSelect.filter((airport) => {
+        return !airportsAlreadyUsed.includes(airport);
+    });
+
     res.render('flights/show', { 
         title: 'Flight Details', 
         flight,
@@ -31,7 +41,8 @@ async function show(req, res) {
             { link: 'flights/new', title: 'Add Flight' },
         ],
         currentDate: new Date(),
-        defaultDate
+        defaultDate,
+        airportsToSelect
     });
 }
 

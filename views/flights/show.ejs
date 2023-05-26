@@ -70,14 +70,9 @@
             </label>
             <select name="airport" class="form-control col-sm-5" required>
                 <option value="">Select Airport</option>
-                <option value="LHR">LHR</option>
-                <option value="LGW">LGW</option>
-                <option value="CDG">CDG</option>
-                <option value="AMS">AMS</option>
-                <option value="FRA">FRA</option>
-                <option value="FCO">FCO</option>
-                <option value="DUB">DUB</option>
-                <option value="JFK">JFK</option>
+                <% airportsToSelect.forEach(function(airport) {  %>
+                    <option value="<%= airport %>"><%= airport %></option>
+                <% }) %>
             </select>
         </div>
         <div class="form-group row">
