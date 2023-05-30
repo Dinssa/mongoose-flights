@@ -29,3 +29,9 @@ h1 {
 .submit{
   align-self: flex-end;
 }
+
+.new-ticket{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: end;
+}

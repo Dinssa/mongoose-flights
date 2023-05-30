@@ -1,5 +1,8 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
+<div class="new-ticket">
+    <a href="/flights/<%= flight._id %>/tickets/new" class="btn btn-outline-warning btn-sm">New Ticket</a>
+</div>
 <div>
     <table class="table table-dark table-sm">
         <thead class="thead-light">
@@ -53,6 +56,19 @@
                     </td>
                 </tr>
             <% } %>
+            <% if (tickets.length > 0) { %>
+                <tr class="">
+                    <th scope="row">Tickets</th>
+                    <td>
+                        <%= tickets.length %> ticket(s) sold
+                        <div class="tickets-row">
+                            <% tickets.forEach(function (ticket) { %>
+                                <span class="ticket"> <%= ticket.seat  %></span>
+                            <% }) %>
+                        </div>
+                    </td> 
+                </tr>
+            <% } %>
             
         </tbody>
     </table>
@@ -84,6 +100,7 @@
         <button class="btn btn-outline-danger btn-sm">UPDATE</button>
     </form>
 </div>
+
 
 
 <%- include('../partials/footer') %>
