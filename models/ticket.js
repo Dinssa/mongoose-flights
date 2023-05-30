@@ -5,7 +5,6 @@ const ticketSchema = new Schema({
   seat: {
     type: String,
     match: /[A-F][1-9]\d?/,
-    unique: true
   },
   price: {
     type: Number,
