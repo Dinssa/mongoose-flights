@@ -39,6 +39,15 @@ async function show(req, res) {
         return a.arrival - b.arrival;
     });
 
+    if (tickets.length > 0){
+        const ticketRegex = tickets[0].constructor.schema.path('seat').validators[0].regexp;
+        tickets.sort((a, b) => {
+            const seatA = ticketRegex.test(a.seat) ? a.seat.charCodeAt(0) * 100 + parseInt(a.seat.slice(1)) : Infinity;
+            const seatB = ticketRegex.test(b.seat) ? b.seat.charCodeAt(0) * 100 + parseInt(b.seat.slice(1)) : Infinity;
+            return seatA - seatB;
+        });
+    }    
+
     res.render('flights/show', { 
         title: 'Flight Details', 
         flight,
