@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<form action="/flights/<%= flight._id %>/tickets" method="POST">
+    <div class="form-group row">
+        <label class="col-form-label col-sm-3 text-white">
+            Seat No.
+        </label>
+        <input name="seat" required pattern="[A-F][1-9]\d?" class="form-control col-sm-5"/>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-sm-3 text-white">
+            Price (£)
+        </label>
+        <input type="number" name="price" min="0" class="form-control col-sm-5" />
+    </div>
+
+    <div class="text-white">
+        You are adding a ticket to flight:
+        <strong>#<%= flight.flightNo %></strong> by <strong><%= flight.airline %></strong> from <strong><%= flight.airport %></strong> on <strong><%= moment(flight.departs).format("DD MMM YYYY HH:mm") %></strong>
+    </div>
+    
+    <button type="submit" class="submit btn btn-primary btn-sm">Add Ticket</button>
+
+</form>
+
+<p class="error alert alert-warning"><%= errorMessage %></p>
+
+<%- include('../partials/footer') %>
