@@ -1,4 +1,5 @@
 const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 const moment = require('moment');
 
 module.exports = {
@@ -21,6 +22,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     const flight = await Flight.findById(req.params.id);
+    const tickets = await Ticket.find({flight: flight._id});
     const { departs : dt } = new Flight(); // TODO: Change this to default arrival date in destination schema
     const defaultDate = moment(dt).format('yyyy-MM-DDTHH:mm');
 
@@ -35,11 +37,12 @@ async function show(req, res) {
 
     flight.destinations.sort((a, b) => {
         return a.arrival - b.arrival;
-    });;
+    });
 
     res.render('flights/show', { 
         title: 'Flight Details', 
         flight,
+        tickets,
         navLinks: [
             { link: 'flights', title: 'All Flights'},
             { link: 'flights/new', title: 'Add Flight' },
